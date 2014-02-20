@@ -1,0 +1,23 @@
+body{
+}
+.inline {
+	display:inline-block;
+}
+.chatbox {
+	box-shadow: inset 2px 2px 5px #000;
+	-webkit-box-shadow: inset 2px 2px 5px #000;
+	background: #eee;
+}
+.chat-input {
+	width:90%;
+}
+.table{
+	position:relative;
+	display:table;
+	vertical-align: top;
+}
+.cell{
+	position:relative;
+	display:table-cell;
+	vertical-align:middle;
+}
