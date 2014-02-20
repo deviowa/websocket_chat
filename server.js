@@ -16,7 +16,7 @@ var io = socket_io.listen(server);
 io.sockets.on('connection', function(client_socket){
 
   //send a welcome when a client connects
-  client_socket.emit('welcome', { text: 'welcome dear browser' }); 
+  client_socket.emit('welcome', { text: 'welcome' }); 
     
   //when a message comes in from a client, braodcast it to every client
   client_socket.on('message', function(data){

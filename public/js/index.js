@@ -32,14 +32,25 @@ function join_chat(nickname){
   }
 
   //new chat message from the server
-  function on_new_message(event_data){
-    write_output(event_data.text);
+  function on_new_message(data){
+    var new_msg = $("<p><b>"+data.nick+"</b>"+data.text+"</p>");
+    $("#output").append(new_msg);
   }
-  
+
+
+  /**********************************************
+   * DOM event handlers & helpoers
+   **********************************************/
+
+  $("#send_button").click( function(ev){
+    ev.preventDefault();
+    send_message();
+  });
+
   // write a line of outut to the chat window
   function write_output(text){
-    var new_msg = $("<p>"+text+"</p>");
-    $("#output").append(new_msg);
+    var line = $("<p>"+text+"</p>");
+    $("#output").append(line);
   }
 
   //send a message with the text enetred by the user
@@ -56,13 +67,7 @@ function join_chat(nickname){
   }
 
 
-  /**********************************************
-   * DOM event handlers
-   **********************************************/
-  $("#send_button").click( function(ev){
-    ev.preventDefault();
-    send_message();
-  });
+
 }
 
 
