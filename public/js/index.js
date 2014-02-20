@@ -102,6 +102,8 @@ var pageOpen = function(){
   $(".container").slideDown(500);
   setTimeout(function(){$("#user-list").css("left", "0");}, 500);
   setTimeout(function(){$(".input-fields").css("top", "0");}, 1000);
+  setTimeout(function(){$(".input-fields").css("z-index", "0");}, 2000);
+  setTimeout(function(){$("#user-list").css("z-index", "0");}, 2000);
   setTimeout(function(){$("#input-chat").removeClass("col-md-8").addClass("col-md-11");}, 2000);
 }
 
