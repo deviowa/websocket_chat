@@ -3,38 +3,28 @@ var http = require('http');
 var socket_io = require('socket.io');
 var path = require('path');
 
+//express app, serves static files from public dir
 var app = express();
-app.get('/', function (req, res) {
-  res.sendfile(__dirname + '/index.html');
-});
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-
-
+//create http server instance and hook up socket.io to it
 var server = http.createServer(app);
 var io = socket_io.listen(server);
-io.set('log level', 1);
-
-server.listen(process.env.PORT || 3000);
 
 
+// client connections via socket.io
+io.sockets.on('connection', function(client_socket){
 
-io.sockets.on('connection', on_connection);
-
-
-var all_sockets = [];
-
-function on_connection(client_socket){
-  all_sockets.push(client_socket);
+  //send a welcome when a client connects
   client_socket.emit('welcome', { text: 'welcome dear browser' }); 
     
+  //when a message comes in from a client, braodcast it to every client
   client_socket.on('message', function(data){
-      for (var i=0; i<all_sockets.length; i++)
-        all_sockets[i].emit('new_message', data);
+    io.sockets.emit('new_message', data);
   });
 
-}
+});
 
 
-
+//start the server...
+server.listen(process.env.PORT || 3000);
