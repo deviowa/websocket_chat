@@ -45,6 +45,8 @@ function join_chat(nickname){
   function on_new_message(data){
     var new_msg = $("<p><b>"+data.nick+":</b> "+data.text+"</p>");
     $("#output").append(new_msg);
+    var objDiv = document.getElementById("output");
+    objDiv.scrollTop = objDiv.scrollHeight;
   }
 
 
@@ -75,7 +77,5 @@ function join_chat(nickname){
     //reset input field
     input_el.val('');
   }
-
-
 
 }
