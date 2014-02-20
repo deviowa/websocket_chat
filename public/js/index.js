@@ -21,6 +21,7 @@ function join_chat(nickname){
   //send our nickname
   socket.emit('nick', nickname);
 
+  pageOpen();
 
   /***********************************************
    * chat protocol / socket.io event handlers
@@ -96,3 +97,22 @@ function join_chat(nickname){
   }
 
 }
+
+var pageOpen = function(){
+  $(".container").slideDown(500);
+  setTimeout(function(){$("#user-list").css("left", "0");}, 500);
+  setTimeout(function(){$(".input-fields").css("top", "0");}, 1000);
+  setTimeout(function(){$("#input-chat").removeClass("col-md-8").addClass("col-md-11");}, 2000);
+}
+
+
+
+
+
+
+
+
+
+
+
+
