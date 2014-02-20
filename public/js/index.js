@@ -33,7 +33,7 @@ function join_chat(nickname){
 
   //new chat message from the server
   function on_new_message(data){
-    var new_msg = $("<p><b>"+data.nick+"</b>"+data.text+"</p>");
+    var new_msg = $("<p><b>"+data.nick+":</b> "+data.text+"</p>");
     $("#output").append(new_msg);
   }
 
