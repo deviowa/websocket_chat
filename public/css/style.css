@@ -3,6 +3,10 @@ body{
 .inline {
 	display:inline-block;
 }
+.affix-bottom{
+	position:absolute;
+	bottom: 0px;
+}
 .chatbox {
 	box-shadow: inset 2px 2px 5px #000;
 	-webkit-box-shadow: inset 2px 2px 5px #000;
