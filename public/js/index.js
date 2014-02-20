@@ -69,5 +69,3 @@ function join_chat(nickname){
 
 
 }
-
-

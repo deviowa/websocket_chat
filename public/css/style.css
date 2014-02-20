@@ -3,13 +3,34 @@ body{
 .inline {
 	display:inline-block;
 }
+.affix-bottom{
+	position:absolute;
+	bottom: 0px;
+}
+.container {
+	margin: 20px auto;
+}
+.height-all{
+	height:100%;
+}
+.stretch {
+	position:absolute;
+	top:20px;
+	bottom:105px;
+	width:100%;
+}
 .chatbox {
 	box-shadow: inset 2px 2px 5px #000;
 	-webkit-box-shadow: inset 2px 2px 5px #000;
-	background: #eee;
+	background: #eee;	
+	height:100%;
+	overflow:auto;
+}
+.glue-down {
+	position:absolute;
+	bottom:0;
 }
 .chat-input {
-	width:90%;
 }
 .table{
 	position:relative;
