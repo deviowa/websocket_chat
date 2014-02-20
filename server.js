@@ -19,7 +19,7 @@ chat_clients = {};
 io.sockets.on('connection', function(socket){
 
   //send a welcome when a client connects
-  socket.emit('welcome', { text: 'welcome', users: chat_clients }); 
+  socket.emit('welcome', { text: 'welcome', users: _.values(chat_clients) }); 
  
   //sent by the client to identify itself
   socket.on('nick', function(data){
@@ -30,6 +30,11 @@ io.sockets.on('connection', function(socket){
   //when a message comes in from a client, braodcast it to every client
   socket.on('message', function(data){
     io.sockets.emit('new_message', data);
+  });
+
+  socket.on('disconnect', function(){
+  	io.sockets.emit('user_disconnected', chat_clients[socket.id]);
+  	delete chat_clients[socket.id];
   });
 
 });

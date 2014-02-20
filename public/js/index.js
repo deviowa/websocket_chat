@@ -29,17 +29,26 @@ function join_chat(nickname){
   socket.on('welcome', on_welcome);
   socket.on('new_message', on_new_message);
   socket.on('user_join', on_user_join);
+  socket.on('user_disconnected', on_user_leave);
  
   //server sends a welcome when we connect successfully
   function on_welcome(data){
     write_output('>> connected successfully');
     console.log("other users:", data.users);
+    for(var i = 0; i < data.users.length; i++){
+      addUser(data.users[i]);
+    }
   }
 
   function on_user_join(data){
     write_output('>> '+data+" has joined the chat");
+    addUser(data);
   }
 
+  function on_user_leave(data) {
+    write_output('>> '+data+' has left the chat');
+    removeUser(data);
+  }
 
   //new chat message from the server
   function on_new_message(data){
@@ -47,6 +56,14 @@ function join_chat(nickname){
     $("#output").append(new_msg);
     var objDiv = document.getElementById("output");
     objDiv.scrollTop = objDiv.scrollHeight;
+  }
+
+  function addUser(name){
+    $("#user-list").append($('<p id='+name+'>'+name+'</p>'));
+  }
+
+  function removeUser(name){
+    $("#"+name).remove();
   }
 
 
